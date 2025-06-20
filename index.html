@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Objednávkový formulář FAPI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Objednávkový formulář FAPI</h1>
+
+  <form id="orderForm" novalidate>
+    <h2>1. Informace o Vás</h2>
+
+    <label>
+      Jméno a Příjmení*
+      <input type="text" name="name" required />
+    </label>
+    <label>
+      E‑mail*
+      <input type="email" name="email" required />
+    </label>
+    <label>
+      Telefon*
+      <input type="tel" name="phone" required pattern="\+?[0-9]{9,}" />
+    </label>
+    <label>
+      Ulice a číslo*
+      <input type="text" name="street" required />
+    </label>
+    <label>
+      Město*
+      <input type="text" name="city" required />
+    </label>
+    <label>
+      PSČ*
+      <input type="text" name="zip" required pattern="\d{3} ?\d{2}" />
+    </label>
+
+    <h2>2. Zvolte si produkt</h2>
+
+    <input type="hidden" name="product" id="productInput" required />
+    <input type="hidden" name="unitPrice" id="unitPrice" required />
+
+    <div class="product-grid" id="productGrid">
+      <div class="product-card" data-product="Tričko černé pánské" data-price="299.00">
+        <img src="tricko1.png" alt="Tričko černé pánské">
+        <div class="product-caption">
+          Tričko černé pánské<br><span class="product-price">299.00 CZK</span>
+        </div>
+      </div>
+      <div class="product-card" data-product="Tričko černé dámské" data-price="249.00">
+        <img src="tricko2.png" alt="Tričko černé dámské">
+        <div class="product-caption">
+          Tričko černé dámské<br><span class="product-price">249.00 CZK</span>
+        </div>
+      </div>
+      <div class="product-card" data-product="Tričko černé dětské" data-price="219.00">
+        <img src="tricko3.png" alt="Tričko černé dětské">
+        <div class="product-caption">
+          Tričko černé dětské<br><span class="product-price">219.00 CZK</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:1rem;">
+      <label class="half">
+        Cena za kus (CZK)
+        <input type="number" id="unitPriceVisible" readonly disabled style="font-size: 1.1rem; height: 2.5rem;" />
+      </label>
+      <label class="half">
+        Počet kusů*
+        <input type="number" name="quantity" id="quantity" min="1" step="1" value="1" required style="font-size: 1.1rem; height: 2.5rem;" />
+      </label>
+    </div>
+
+    <div class="total">
+      Celková cena: <span id="totalPrice">0.00</span> CZK
+    </div>
+
+    <button type="submit">Odeslat objednávku</button>
+  </form>
+
+  <div class="summary" id="summary" hidden></div>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
